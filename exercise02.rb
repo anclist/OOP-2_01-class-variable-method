@@ -3,6 +3,7 @@ class Book
   @@on_loan = []
 
   def due_date(time)
+    
     @due_date = Time.now + time
   end
 
@@ -10,6 +11,18 @@ class Book
     @title  = title
     @author = author
     @isbn_13 = isbn_13
+  end
+
+  def title
+    @title
+  end
+
+  def author
+    @author
+  end
+
+  def isbn_13
+    @isbn_13
   end
 
   def self.create(title, author, isbn_13)
@@ -31,7 +44,9 @@ class Book
   end
 
   def lent_out?
-
+    @@on_loan.any? do |book|
+      book.isbn_13
+      end
     # This instance method return true if a book has already been borrowed
     # and false otherwise.
   end
