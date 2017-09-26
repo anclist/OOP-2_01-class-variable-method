@@ -22,7 +22,8 @@ class BankAccount
     new_account = BankAccount.new
     @@accounts << new_account
   end
-
-
+  def self.total_funds
+    p @@accounts.sum
+  end
 
 end
