@@ -1,31 +1,42 @@
 # require 'pry'
 
 class BankAccount
-  @@interest_rate = 0.125
-  @@accounts =[]
 
-  def self.create
-    new_account = BankAccount.new
-    @@accounts << new_account.balance
-    return new_account
-  end
-  def self.total_funds
-    @@accounts.sum
-  end
+  @@interest_rate = 0.01
+  @@accounts =[]
 
   def initialize
     @balance = 0
   end
 
-  def deposit(deposit)
-    @balance += deposit
-  end
-
-  def withdraw(withdraw)
-    @balance -= withdraw
-  end
   def balance
     @balance
+  end
+
+  def deposit(deposit_amount)
+    @balance += deposit_amount
+  end
+
+  def withdraw(withdraw_amount)
+    @balance -= withdraw_amount
+  end
+
+  def self.create
+    new_account = BankAccount.new
+    @@accounts << new_account
+    return new_account
+  end
+
+  def self.total_funds
+    total = 0
+    @@accounts.each do |account|
+      total += account.balance
+    end
+    total
+  end
+
+  def self.interest_time
+
   end
 
 end
@@ -39,3 +50,10 @@ your_account.deposit(1000)
 puts my_account.balance # 200
 puts your_account.balance # 1000
 puts BankAccount.total_funds # 1200
+BankAccount.interest_time
+# puts my_account.balance # 202.0
+# puts your_account.balance # 1010.0
+# puts BankAccount.total_funds # 1212.0
+# my_account.withdraw(50)
+# puts my_account.balance # 152.0
+# puts BankAccount.total_funds # 1162.0
