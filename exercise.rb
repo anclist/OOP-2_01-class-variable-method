@@ -13,6 +13,10 @@ class BankAccount
     @balance
   end
 
+  def change_balance(value)
+    @balance = value
+  end
+
   def deposit(deposit_amount)
     @balance += deposit_amount
   end
@@ -36,24 +40,26 @@ class BankAccount
   end
 
   def self.interest_time
+    @@accounts.each do |account|
+      account.deposit(account.balance * @@interest_rate)
+    end
 
   end
-
 end
 
 my_account = BankAccount.create
 your_account = BankAccount.create
-puts my_account.balance # 0
-puts BankAccount.total_funds # 0
+puts "My Account balance is #{my_account.balance}" # 0
+puts "The bank total funds are #{BankAccount.total_funds}" # 0
 my_account.deposit(200)
 your_account.deposit(1000)
-puts my_account.balance # 200
-puts your_account.balance # 1000
-puts BankAccount.total_funds # 1200
+puts "My Account balance is #{my_account.balance}" # 200
+puts "Your Account balance is #{your_account.balance}" # 1000
+puts "The bank total funds are #{BankAccount.total_funds}" # 1200
 BankAccount.interest_time
-# puts my_account.balance # 202.0
-# puts your_account.balance # 1010.0
-# puts BankAccount.total_funds # 1212.0
-# my_account.withdraw(50)
-# puts my_account.balance # 152.0
-# puts BankAccount.total_funds # 1162.0
+puts "My Account balance is #{my_account.balance}" # 202.0
+puts "Your Account balance is #{your_account.balance}" # 1010.0
+puts "The bank total funds are #{BankAccount.total_funds}" # 1212.0
+my_account.withdraw(50)
+puts "My Account balance is #{my_account.balance}" # 152.0
+puts "The bank total funds are #{BankAccount.total_funds}" # 1162.0
