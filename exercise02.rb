@@ -23,17 +23,15 @@ class Book
   end
 
   def self.borrowed
-    p @@on_loan
+    @@on_loan
   end
 
   def self.browse
     @@on_shelf.sample
-
-    # This class method should return a random book from @@on_shelf
-    # (you may need to consult the Array docs to figure out how to do this).
   end
 
   def lent_out?
+
     # This instance method return true if a book has already been borrowed
     # and false otherwise.
   end
@@ -66,8 +64,8 @@ puts Book.browse.inspect # #<Book:0x00555e82acdab0 @title="If They Come in the M
 puts Book.browse.inspect # #<Book:0x00562314676118 @title="Ain't I a Woman?", @author="Bell Hooks", @isbn="9780896081307"> (this value may be different for you)
 puts Book.browse.inspect # #<Book:0x00562314676118 @title="Ain't I a Woman?", @author="Bell Hooks", @isbn="9780896081307"> (this value may be different for you)
 puts Book.available.inspect # [#<Book:0x00555e82acde20 @title="Sister Outsider", @author="Audre Lorde", @isbn="9781515905431">, #<Book:0x00555e82acdce0 @title="Ain't I a Woman?", @author="Bell Hooks", @isbn="9780896081307">, #<Book:0x00555e82acdab0 @title="If They Come in the Morning", @author="Angela Y. Davis", @isbn="0893880221">]
-# puts Book.borrowed.inspect # []
-# puts sister_outsider.lent_out? # false
+puts Book.borrowed.inspect # []
+puts sister_outsider.lent_out? # false
 # puts sister_outsider.borrow # true
 # puts sister_outsider.lent_out? # true
 # puts sister_outsider.borrow # false
