@@ -10,8 +10,10 @@ class Book
 
   end
 
-  def self.create
-
+  def self.create(title, author, isbn_13)
+    new_book = Book.new
+    @@on_shelf << new_book
+    new_book
   end
 
   def self.available
@@ -51,3 +53,8 @@ class Book
 
   end
 end
+
+
+sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
+aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
+if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
