@@ -28,16 +28,42 @@ class Zombie
     @strength
   end
 
-  def encounter
+  def speed=(speed)
+    @speed = speed
+  end
 
+  def strength=(strength)
+    @strength = strength
+  end
+
+  def encounter
+      if outrun_zombie? == true
+        "You escaped"
+      elsif survive_attack? == false
+        "You died"
+      else
+        my_self = Zombie.new(rand(@@max_speed) + 1, rand(@@max_strength) + 1, )
+        @@horde << my_self
+        "You're now a Zombie"
+      end
   end
 
   def outrun_zombie?
-    
+    my_speed = rand(@@max_speed) + 1
+    if my_speed > @speed
+      true
+    else
+      false
+    end
   end
 
   def survive_attack?
-
+    my_strength = rand(@@max_strength) + 1
+    if my_strength > @strength
+      true
+    else
+      false
+    end
   end
 
   def self.all
@@ -61,6 +87,7 @@ class Zombie
     (rand(@@plague_level)+1).times do |zombie|
       zombie = Zombie.new(rand(@@max_speed) + 1, rand(@@max_strength) + 1, )
       @@horde << zombie
+      zombie
     end
   end
 
@@ -71,25 +98,13 @@ class Zombie
 end
 
 
+
+Zombie.spawn
+puts Zombie.all.inspect
+
+puts "-----------------------"
+
 Zombie.new_day
 puts Zombie.all.inspect
 fighting_zombie = Zombie.all[rand(Zombie.all.length)]
-# puts Zombie.all[rand(Zombie.all.length)].inspect
-
-# puts Zombie.all.inspect # []
-# Zombie.new_day
-# puts Zombie.all.inspect # [#<Zombie:0x005626ecc5ebd0 @speed=4, @strength=0>, #<Zombie:0x005626ecc5eba8 @speed=0, @strength=4>, #<Zombie:0x005626ecc5eb80 @speed=4, @strength=4>]
-# zombie1 = Zombie.all[0]
-# zombie2 = Zombie.all[1]
-# zombie3 = Zombie.all[2]
-# puts zombie1.encounter # You are now a zombie
-# puts zombie2.encounter # You died
-# puts zombie3.encounter # You died
-# Zombie.new_day
-# puts Zombie.all.inspect # [#<Zombie:0x005626ecc5e1f8 @speed=0, @strength=0>, #<Zombie:0x005626ecc5e180 @speed=3, @strength=3>, #<Zombie:0x005626ecc5e158 @speed=1, @strength=2>, #<Zombie:0x005626ecc5e090 @speed=0, @strength=4>]
-# zombie1 = Zombie.all[0]
-# zombie2 = Zombie.all[1]
-# zombie3 = Zombie.all[2]
-# puts zombie1.encounter # You got away
-# puts zombie2.encounter # You are now a zombie
-# puts zombie3.encounter # You died
+puts fighting_zombie.encounter
