@@ -71,10 +71,10 @@ class Zombie
   end
 
   def self.new_day
-    Zombie.spawn
-    Zombie.some_die_off
-    Zombie.increase_plague_level
-    Zombie.spawn
+    spawn
+    some_die_off
+    increase_plague_level
+    spawn
   end
 
   def self.some_die_off
