@@ -45,14 +45,15 @@ class Zombie
   end
 
   def self.new_day
-# This class method represents the events of yet another day of the zombie apocalypse.
-# Every day some zombies die off (phew!), some new ones show up, and sometimes
-# the zombie plague level increases. In order to accomplish this, new_day should
-# call some_die_off, spawn, and increase_plague_level.
+    Zombie.some_die_off
+    Zombie.increase_plague_level
+    Zombie.spawn
   end
 
   def self.some_die_off
-
+    rand(@@horde.length).times do
+      @@horde.delete_at(rand(@@horde.length))
+    end
   end
 
   def self.spawn
@@ -63,11 +64,16 @@ class Zombie
   end
 
   def self.increase_plague_level
-
+    @@plague_level -= rand(3)
   end
 
 end
 
 
-# Zombie.spawn
-# Zombie.all
+Zombie.spawn
+puts Zombie.all#.inspect
+
+puts "------------------"
+
+Zombie.new_day
+puts Zombie.all#.inspect
